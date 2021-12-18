@@ -1,10 +1,12 @@
 node {
     checkout scm
-    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+    withCredentials([usernamePassword( credentialsId: 'dockerhub', usernameVariable: 'admindocker143', passwordVariable: 'Kalpakkam1479')]) {
+        docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
 
-        def customImage = docker.build("firstl/docker_web_app")
+            def customImage = docker.build("firstl/docker_web_app")
 
-        /* Push the container to the custom Registry */
-        customImage.push()
+            /* Push the container to the custom Registry */
+            customImage.push()
+        }
     }
 }
