@@ -1,6 +1,5 @@
 node {
     checkout scm
-    docker login -u admindocker143
     docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
 
         def customImage = docker.build("firstl/docker_web_app")
